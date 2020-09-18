@@ -71,7 +71,11 @@ public class Panier {
 
     //groupe 6
     public double getPrix(){  //calcule le prix du panier par addition des prix de tous les fruits contenus dedans
-	return 0;
+    double prix = 0;
+    for(Fruit f : fruits){
+        prix += f.getPrix();
+    }
+	return prix;
     }
     
     //groupe 7
