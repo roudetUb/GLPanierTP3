@@ -31,7 +31,7 @@ public class Panier {
     }
     
     public int getContenanceMax(){  //accesseur du second attribut
-	return 0;
+	    return 0;
     }
 
     //groupe 3
