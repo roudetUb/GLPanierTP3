@@ -74,7 +74,17 @@ public class Panier {
     //groupe 8
     @Override
     public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
-        return false;
+
+     if (o == null || getClass() != o.getClass()) return false;
+     Panier p = (Panier)o;
+     int length = Math.min( p.getTaillePanier(), this.getTaillePanier() );
+     for (int i = 0; i < length; i++) {
+       if (!p.getFruit(i).equals(this.getFruit(i))) return false;
+     }
+
+     return true;
+
+
     }
 
     //tests
