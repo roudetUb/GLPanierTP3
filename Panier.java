@@ -31,11 +31,7 @@ public class Panier {
     }
 
     public int getContenanceMax(){  //accesseur du second attribut
-<<<<<<< HEAD
-	    return 0;
-=======
 	      return this.contenanceMax;
->>>>>>> b622c4b886f150cf5b9efdd595e0c44a71a42d79
     }
 
     //groupe 3
@@ -86,13 +82,6 @@ public class Panier {
     //tests
     public static void main (String[] args){
     	//Ecrire ici vos tests
-<<<<<<< HEAD
         System.out.println("premier test Panier");
-=======
-      Panier p1= new Panier(10);
-      System.out.println("Taille du panier :"+p1.getTaillePanier());
-      System.out.println("Contenance Max :"+p1.getContenanceMax());
-	System.out.println("premier test Panier");
->>>>>>> b622c4b886f150cf5b9efdd595e0c44a71a42d79
     }
 }
