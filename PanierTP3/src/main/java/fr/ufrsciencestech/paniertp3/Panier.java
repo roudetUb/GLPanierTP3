@@ -1,6 +1,9 @@
 package fr.ufrsciencestech.paniertp3;
 
 import fr.ufrsciencestech.paniertp3.Fruit;
+import fr.ufrsciencestech.paniertp3.Fruit;
+import fr.ufrsciencestech.paniertp3.PanierPleinException;
+import fr.ufrsciencestech.paniertp3.PanierVideException;
 import java.util.*;
 /**
  *
