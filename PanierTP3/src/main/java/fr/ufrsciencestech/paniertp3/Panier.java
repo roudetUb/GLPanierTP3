@@ -86,7 +86,11 @@ public class Panier {
     
     //groupe 7
     public void boycotteOrigine(String origine){  //supprime du panier tous les fruits provenant du pays origine
-	
+	for(int i=0; i<fruits.size(); i++){
+		if(fruits.get(i).getOrigine().equals(origine)){
+			fruits.remove(fruits.get(i));
+}
+}
     }  
         
     //groupe 8    
