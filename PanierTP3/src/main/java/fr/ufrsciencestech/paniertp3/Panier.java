@@ -12,6 +12,7 @@ public class Panier {
     //groupe 1
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
         this.contenanceMax = contenanceMax;
+        fruits = new ArrayList<>();
     }
 
     @Override
