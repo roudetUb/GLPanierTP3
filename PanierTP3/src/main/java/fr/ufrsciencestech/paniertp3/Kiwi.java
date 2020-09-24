@@ -1,6 +1,6 @@
 package fr.ufrsciencestech.paniertp3;
 
-public class Kiwi {
+public class Kiwi implements Fruit{
     private double prix;
     private String origine;
 
@@ -53,8 +53,8 @@ public class Kiwi {
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'un kiwi a des pepins
-        return false;
+    public boolean isSeedless() {  //predicat indiquant qu'un kiwi n'a pas de pepins
+        return true;
     }
 
 

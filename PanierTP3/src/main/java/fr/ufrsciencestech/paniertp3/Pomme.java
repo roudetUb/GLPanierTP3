@@ -4,7 +4,7 @@ package fr.ufrsciencestech.paniertp3;
  *
  * @author nathan voizeux
  */
-public class Pomme {
+public class Pomme implements Fruit{
     private double prix;
     private String origine;
 	

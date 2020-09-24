@@ -1,9 +1,5 @@
 package fr.ufrsciencestech.paniertp3;
 
-import fr.ufrsciencestech.paniertp3.Fruit;
-import fr.ufrsciencestech.paniertp3.Fruit;
-import fr.ufrsciencestech.paniertp3.PanierPleinException;
-import fr.ufrsciencestech.paniertp3.PanierVideException;
 import java.util.*;
 /**
  *
@@ -29,11 +25,11 @@ public class Panier {
     
     //groupe 2
     public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut
-        return null;
+        return fruits;
     }
 
     public void setFruits(ArrayList<Fruit> fruits) { //modificateur du premier attribut
-      
+        this.fruits = fruits;
     }
 
     public int getTaillePanier(){  //accesseur retournant la taille allouee pour l'attibut fruits
@@ -66,12 +62,24 @@ public class Panier {
 
     //groupe 4
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-        
+        if(o == null)
+            return;
+        if(!estPlein()){
+            fruits.add(o);
+        }
+        else 
+            throw new PanierPleinException();
     }
 
     //groupe 5
     public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
-        
+        if(!estVide()){
+            fruits.remove(fruits.size()-1);
+        }
+        else 
+        {
+            throw new PanierVideException();
+        }
     }
 
     //groupe 6
@@ -89,8 +97,8 @@ public class Panier {
 	for(int i=0; i<fruits.size(); i++){
 		if(fruits.get(i).getOrigine().equals(origine)){
 			fruits.remove(fruits.get(i));
-}
-}
+                }
+        }
     }  
         
     //groupe 8    

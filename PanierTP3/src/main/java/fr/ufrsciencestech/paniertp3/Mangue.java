@@ -4,7 +4,7 @@ package fr.ufrsciencestech.paniertp3;
  *
  * @author guillemin
  */
-public class Mangue {
+public class Mangue implements Fruit{
     private double prix;
     private String origine;
 	
@@ -57,7 +57,7 @@ public class Mangue {
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une Mangue a des pepins
+    public boolean isSeedless() {  //predicat indiquant qu'une Mangue a un noyau
         return false;
     }
 

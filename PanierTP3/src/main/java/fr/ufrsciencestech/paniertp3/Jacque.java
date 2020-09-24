@@ -4,7 +4,7 @@ package fr.ufrsciencestech.paniertp3;
  *
  * @author Gary
  */
-public class Jacque {
+public class Jacque implements Fruit{
     private double prix;
     private String origine;
 
@@ -57,7 +57,7 @@ public class Jacque {
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'une Mangue a des pepins
+    public boolean isSeedless() {  //predicat indiquant qu'un Jacque a des pepins
         return false;
     }
 
