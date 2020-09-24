@@ -43,7 +43,7 @@ public class Panier {
 
     //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-        if(i <= this.fruits.size()) 
+        if(i >= this.fruits.size()) 
             return null;
         return this.fruits.get(i);
     }
