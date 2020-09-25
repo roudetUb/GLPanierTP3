@@ -1,5 +1,6 @@
 package fr.ufrsciencestech.paniertp3;
 
+import static java.lang.Math.abs;
 import java.util.*;
 /**
  *
@@ -11,7 +12,8 @@ public class Panier {
 	
     //groupe 1
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
-        this.contenanceMax = contenanceMax;
+        this.contenanceMax = abs(contenanceMax);
+        this.fruits = new ArrayList<Fruit>();
     }
 
     @Override
@@ -42,9 +44,9 @@ public class Panier {
 
     //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-        if(i <= this.fruits.size()) 
-            return null;
-        return this.fruits.get(i);
+        if(i < this.fruits.size()) 
+            return this.fruits.get(i);
+        return null;
     }
     
     public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
@@ -94,10 +96,12 @@ public class Panier {
     
     //groupe 7
     public void boycotteOrigine(String origine){  //supprime du panier tous les fruits provenant du pays origine
-	for(int i=0; i<fruits.size(); i++){
-		if(fruits.get(i).getOrigine().equals(origine)){
-			fruits.remove(fruits.get(i));
-                }
+	int i = 0;					//A
+	while(i < fruits.size()){			//B
+            if(fruits.get(i).getOrigine().equals(origine)) //C
+		fruits.remove(i);			//D
+            else								 
+		i++ ;					//E
         }
     }  
         
@@ -107,8 +111,10 @@ public class Panier {
         if (o == null || getClass() != o.getClass()) 
             return false;
         Panier p = (Panier)o;
-        int length = Math.min( p.getTaillePanier(), this.getTaillePanier() );
-        for (int i = 0; i < length; i++) 
+        if(p.getTaillePanier() != this.getTaillePanier() )
+            return false;
+
+        for (int i = 0; i < this.getTaillePanier(); i++) 
         {
             if (!p.getFruit(i).equals(this.getFruit(i))) 
                 return false;
