@@ -34,7 +34,7 @@ public class Panier {
         this.fruits = fruits;
     }
 
-    public int getTaillePanier(){  //accesseur retournant la taille allouee pour l'attibut fruits
+    public int getTaillePanier(){  //accesseur retournant le nombre d'element dans l'array list fruits
         return this.fruits.size();
     }
     
