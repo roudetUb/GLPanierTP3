@@ -1,4 +1,4 @@
-package fr.ufrsciencestech.paniertp3;
+package fr.ufrsciencestech.paniertp3.model;
 
 public class Kiwi implements Fruit{
     private double prix;

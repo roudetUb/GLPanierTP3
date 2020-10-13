@@ -1,82 +1,75 @@
-package fr.ufrsciencestech.paniertp3;
+package fr.ufrsciencestech.paniertp3.model;
 
-import static java.lang.Math.abs;
 import java.util.*;
 /**
  *
  * @author roudet
  */
-public class Panier {
+public class Panier extends Observable{
     private ArrayList<Fruit> fruits;  //attribut pour stocker les fruits
     private int contenanceMax;        //nb maximum d'oranges que peut contenir le panier
-	
-    //groupe 1
+
     public Panier(int contenanceMax){  //initialise un panier vide ayant une certaine contenance maximale (precisee en parametre)
-        this.contenanceMax = abs(contenanceMax);
+        this.contenanceMax = Math.abs(contenanceMax);
         this.fruits = new ArrayList<Fruit>();
     }
 
     @Override
     public String toString(){  //affichage de ce qui est contenu dans le panier : liste des fruits presents
-        String toString = "Contenu du Panier : \n";
-        for (Fruit fruit : fruits) {
-          toString += fruit.toString() + '\n';
-        }
-        return toString;
+        return "Le panier comporte " + this.fruits.size() + " et a une contenanceMax de " + this.contenanceMax;
     }
-    
-    //groupe 2
+
     public ArrayList<Fruit> getFruits() {  //accesseur du premier attribut
-        return fruits;
+       return fruits;
     }
 
     public void setFruits(ArrayList<Fruit> fruits) { //modificateur du premier attribut
-        this.fruits = fruits;
+	this.fruits = fruits;
     }
 
-    public int getTaillePanier(){  //accesseur retournant le nombre d'element dans l'array list fruits
-        return this.fruits.size();
+    public int getTaillePanier(){  //accesseur retournant la taille allouee pour l'attibut fruits
+        return fruits.size();
     }
-    
+
     public int getContenanceMax(){  //accesseur du second attribut
-	return this.contenanceMax;
+	return contenanceMax;
     }
 
-    //groupe 3
     public Fruit getFruit(int i){  //accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou null s'il n'y a rien a cet emplacement
-        if(i < this.fruits.size()) 
-            return this.fruits.get(i);
-        return null;
-    }
-    
-    public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
-        if(i < this.fruits.size())
-            this.fruits.set(i, f);
-    }
-    
-    public boolean estVide(){  //predicat indiquant que le panier est vide
-	return this.fruits.isEmpty();    //modifie par C. Roudet
-    }
-    
-    public boolean estPlein(){  //predicat indiquant que le panier est plein
-	return this.fruits.size() == this.contenanceMax;
+	if(i >= 0 && i < getFruits().size())
+            return getFruits().get(i);
+        else
+            return null;
     }
 
-    //groupe 4
+    public void setFruit(int i, Fruit f){  //modificateur du fruit contenu dans le panier a l'emplacement n°i par f (s'il y a bien deja un fruit a cet emplacement, ne rien faire sinon)
+        fruits.set(i, f);
+    }
+
+    public boolean estVide(){  //predicat indiquant que le panier est vide
+	return fruits.isEmpty();
+    }
+
+    public boolean estPlein(){  //predicat indiquant que le panier est plein
+	return fruits.size() == contenanceMax;
+    }
+
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
         if(o == null)
             return;
-        if(!estPlein()){
-            fruits.add(o);
+        if(this.fruits.size() < this.contenanceMax){
+            this.fruits.add(o);
+            setChanged();
+            notifyObservers();
         }
-        else 
-            throw new PanierPleinException();
+        else throw new PanierPleinException();
     }
 
-    //groupe 5
-    public void retrait() throws PanierVideException{ //retire le dernier fruit du panier si celui-ci n'est pas vide
+    public void retrait() throws PanierVideException{  //retire le dernier fruit du panier si celui-ci n'est pas vide
         if(!estVide()){
-            fruits.remove(fruits.size()-1);
+            getFruits().remove(getFruits().size()-1);
+            setChanged();
+            notifyObservers();
         }
         else 
         {
@@ -84,47 +77,33 @@ public class Panier {
         }
     }
 
-    //groupe 6
     public double getPrix(){  //calcule le prix du panier par addition des prix de tous les fruits contenus dedans
-        double prix = 0;
-        for(Fruit f : fruits)
-        {
-            prix += f.getPrix();
-        }
-	return prix;
+	double total=0;
+	for(int i = 0 ; i < getFruits().size() ; i++)
+            total += fruits.get(i).getPrix();
+	return total;
     }
-    
-    //groupe 7
+
     public void boycotteOrigine(String origine){  //supprime du panier tous les fruits provenant du pays origine
-	int i = 0;					//A
+        int i = 0;					//A
 	while(i < fruits.size()){			//B
             if(fruits.get(i).getOrigine().equals(origine)) //C
 		fruits.remove(i);			//D
             else								 
 		i++ ;					//E
         }
-    }  
-        
-    //groupe 8    
+    }
+
     @Override
     public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
-        if (o == null || getClass() != o.getClass()) 
-            return false;
-        Panier p = (Panier)o;
-        if(p.getTaillePanier() != this.getTaillePanier() )
-            return false;
+      if (o == null || getClass() != o.getClass()) return false;
+      Panier p = (Panier)o;
+      int length = Math.min(p.getTaillePanier(), this.getTaillePanier());
+      for (int i = 0; i < length; i++) {
+        if (!p.getFruit(i).equals(this.getFruit(i))) return false;
+      }
 
-        for (int i = 0; i < this.getTaillePanier(); i++) 
-        {
-            if (!p.getFruit(i).equals(this.getFruit(i))) 
-                return false;
-        }
-        return true;
+      return true;
     }
-    
-    //tests
-    public static void main (String[] args){
-    	//Ecrire ici vos tests
-        System.out.println("premier test Panier");
-    }
+
 }

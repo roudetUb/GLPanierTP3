@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ufrsciencestech.paniertp3;
+package fr.ufrsciencestech.paniertp3.model;
 
 import java.util.ArrayList;
 import org.junit.After;
@@ -176,6 +176,7 @@ public class PanierTest {
     }
     
     
+
     
     //TESTS EN ISOLATION DE GETPRIX
     
@@ -275,6 +276,7 @@ public class PanierTest {
 	assertEquals(p3_1, p3_2);
     }
     
+	
     
     //TESTS A LANCER QUAND LA CLASSE ORANGE A ETE TESTEE : INTEGRATION DE BOYCOTTEORIGINE
     //DT1 panier vide (de contenanceMax=3) et origine = "Espagne" / resultat : le panier est toujours vide
@@ -351,7 +353,6 @@ public class PanierTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
     
     /**
      * Test of toString method, of class Panier.

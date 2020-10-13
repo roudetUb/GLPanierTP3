@@ -1,20 +1,20 @@
-package fr.ufrsciencestech.paniertp3;
+package fr.ufrsciencestech.paniertp3.model;
 
 /**
  *
- * @author Tridard
+ * @author roudet
  */
-public class Durian implements Fruit{
+public class Orange implements Fruit{
     private double prix;
     private String origine;
-
-    public Durian()
+	
+    public Orange() 
     {
         this.prix = 0.5;  //prix en euros
         this.origine="Espagne";
     }
-
-    public Durian(double prix, String origine)
+    
+    public Orange(double prix, String origine) 
     {
 	if(prix < 0)
 	    this.prix = -prix;  //une solution possible pour interdire les prix negatifs
@@ -22,9 +22,9 @@ public class Durian implements Fruit{
 	    this.prix = prix;
 
 	if(origine.equals(""))
-            this.origine = "Chine";  //Espagne par défaut
+            this.origine = "Espagne";  //Espagne par défaut
 	else
-            this.origine = origine;
+            this.origine = origine;   
     }
 
     public double getPrix(){
@@ -38,35 +38,32 @@ public class Durian implements Fruit{
     public String getOrigine(){
 	return origine;
     }
-
+ 
     public void setOrigine(String origine){
 	this.origine=origine;
     }
 
     @Override
     public String toString(){
-        return "Durian de " + origine + " a " + prix + " euros";
+        return "Orange de " + origine + " a " + prix + " euros";
     }
 
     @Override
-    public boolean equals(Object o){  //predicat pour tester si 2 Durian sont equivalentes
+    public boolean equals(Object o){  //predicat pour tester si 2 oranges sont equivalentes
         if(o != null && getClass() == o.getClass()){
-            Durian or = (Durian) o;
+            Orange or = (Orange) o;
             return (prix == or.prix && origine.equals(or.origine));
         }
         return false;
     }
 
-    public boolean isSeedless() {  //predicat indiquant qu'un Durian a des pepins
+    public boolean isSeedless() {  //predicat indiquant qu'une orange a des pepins
         return false;
     }
 
 
     public static void main (String[] args){
         //Ecrire ici vos tests
-	System.out.println("premier test Durian");
-      //test Durian = Durian
-
-
+	System.out.println("premier test Orange");
    }
 }
