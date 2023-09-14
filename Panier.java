@@ -105,18 +105,22 @@ public class Panier {
     Panier p4 = new Panier(3); // panier différent du premier (mais seul les deux premiers fruits sont identiques)
     Fruit f1 = (Fruit) new Ananas(3.56, "");
     Fruit f2 = (Fruit) new Orange(0.5, "France");
-    p1.ajout(f1);
-    p1.ajout(f2);
-    p2.ajout(f1);
-    p2.ajout(f2);
-    p3.ajout(f1);
-    p3.ajout(new Orange(0.5, "Espagne"));
-    p4.ajout(f1);
-    p4.ajout(f2);
-    p4.ajout(new Orange(0.75, "Costa Rica"));
-    if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
-        System.out.println("Test Panier.equals(Object) : OK");
-    } else {
+    try {
+        p1.ajout(f1);
+        p1.ajout(f2);
+        p2.ajout(f1);
+        p2.ajout(f2);
+        p3.ajout(f1);
+        p3.ajout(new Orange(0.5, "Espagne"));
+        p4.ajout(f1);
+        p4.ajout(f2);
+        p4.ajout(new Orange(0.75, "Costa Rica"));
+        if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
+            System.out.println("Test Panier.equals(Object) : OK");
+        } else {
+            System.out.println("Test Panier.equals(Object) : NOK");
+        }
+    } catch (PanierPleinException e) {
         System.out.println("Test Panier.equals(Object) : NOK");
     }
 
