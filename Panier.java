@@ -83,12 +83,51 @@ public class Panier {
     //groupe 8    
     @Override
     public boolean equals(Object o){  ///predicat pour tester si 2 paniers sont equivalents : s'ils contiennent exactement les memes fruits
+        if (o != null && o instanceof Panier) {
+            Panier or = (Panier) o;
+            if (getTaillePanier() == or.getTaillePanier()) {
+                for (int i = 0; i < getTaillePanier(); i++) {
+                    if (!getFruit(i).equals(or.getFruit(i))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
         return false;
     }
     
     //tests
     public static void main (String[] args){
     	//Ecrire ici vos tests
+
+    // test de Panier.equals(Object)
+    Panier p1 = new Panier(3); // exemple de panier (ananas, orange, <vide>)
+    Panier p2 = new Panier(3); // panier identique au premier
+    Panier p3 = new Panier(3); // panier différent du premier (mais premier fruit identique)
+    Panier p4 = new Panier(3); // panier différent du premier (mais seul les deux premiers fruits sont identiques)
+    Fruit f1 = (Fruit) new Ananas(3.56, "");
+    Fruit f2 = (Fruit) new Orange(0.5, "France");
+    try {
+        p1.ajout(f1);
+        p1.ajout(f2);
+        p2.ajout(f1);
+        p2.ajout(f2);
+        p3.ajout(f1);
+        p3.ajout(new Orange(0.5, "Espagne"));
+        p4.ajout(f1);
+        p4.ajout(f2);
+        p4.ajout(new Orange(0.75, "Costa Rica"));
+        if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
+            System.out.println("Test Panier.equals(Object) : OK");
+        } else {
+            System.out.println("Test Panier.equals(Object) : NOK");
+        }
+    } catch (PanierPleinException e) {
+        System.out.println("Test Panier.equals(Object) : NOK");
+    }
+
+
 	System.out.println("premier test Panier");
 	Panier P = new Panier(10);
 	System.out.println(P.toString());
