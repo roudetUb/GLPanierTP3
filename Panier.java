@@ -16,6 +16,7 @@ public class Panier {
     }
 
     @Override
+
     public String toString() { // affichage de ce qui est contenu dans le panier : liste des fruits presents
         String res = "";
         String newLine = System.getProperty("line.separator");
@@ -27,10 +28,12 @@ public class Panier {
 
     // groupe 2
     public ArrayList<Fruit> getFruits() { // accesseur du premier attribut
-        return null;
+
+        return this.fruits;
     }
 
     public void setFruits(ArrayList<Fruit> fruits) { // modificateur du premier attribut
+        this.fruits = fruits;
 
     }
 
@@ -42,6 +45,12 @@ public class Panier {
         return this.contenanceMax;
     }
 
+    // groupe 3
+    public Fruit getFruit(int i) { // accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou
+                                   // null s'il n'y a rien a cet emplacement
+        return null;
+    }
+
     // groupe 4
     public void ajout(Fruit o) throws PanierPleinException { // ajoute le fruit o a la fin du panier si celui-ci n'est
                                                              // pas plein
@@ -50,12 +59,6 @@ public class Panier {
         else
             throw new PanierPleinException();
 
-    }
-
-    // groupe 3
-    public Fruit getFruit(int i) { // accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou
-                                   // null s'il n'y a rien a cet emplacement
-        return null;
     }
 
     public void setFruit(int i, Fruit f) { // modificateur du fruit contenu dans le panier a l'emplacement n°i par f
@@ -71,12 +74,6 @@ public class Panier {
         return false;
     }
 
-    // groupe 4
-    public void ajout(Fruit o) throws PanierPleinException { // ajoute le fruit o a la fin du panier si celui-ci n'est
-                                                             // pas plein
-
-    }
-
     // groupe 5
     public void retrait() throws PanierVideException { // retire le dernier fruit du panier si celui-ci n'est pas vide
 
@@ -89,28 +86,6 @@ public class Panier {
     }
 
     // groupe 7
-    public void boycotteOrigine(String origine) { // supprime du panier tous les fruits provenant du pays origine
-
-    }
-
-    // groupe 8
-    @Override
-    public boolean equals(Object o) { /// predicat pour tester si 2 paniers sont equivalents : s'ils contiennent
-                                      /// exactement les memes fruits
-        return false;
-    }
-
-    // tests
-public static void main(String[] args) {
-        // Ecrire ici vos tests
-        System.out.println("premier test Panier");
-        Panier P = new Panier(10);
-        System.out.println(P.toString());
-
-        
-
-    
-    //groupe 7
     public void boycotteOrigine(String origine) { // supprime du panier tous les fruits provenant du pays origine
 
     }
@@ -134,48 +109,67 @@ public static void main(String[] args) {
     }
 
     // tests
-    public static void main (String[] args){
-    	//Ecrire ici vos tests
+    public static void main(String[] args) {
+        // Ecrire ici vos tests
+        System.out.println("premier test Panier");
+        Panier P = new Panier(10);
+        System.out.println(P.toString());
 
-    // test de Panier.equals(Object)
-    Panier p1 = new Panier(3); // exemple de panier (ananas, orange, <vide>)
-    Panier p2 = new Panier(3); // panier identique au premier
-    Panier p3 = new Panier(3); // panier différent du premier (mais premier fruit identique)
-    Panier p4 = new Panier(3); // panier différent du premier (mais seul les deux premiers fruits sont identiques)
-    Fruit f1 = (Fruit) new Ananas(3.56, "");
-    Fruit f2 = (Fruit) new Orange(0.5, "France");
-    try {
-        p1.ajout(f1);
-        p1.ajout(f2);
-        p2.ajout(f1);
-        p2.ajout(f2);
-        p3.ajout(f1);
-        p3.ajout(new Orange(0.5, "Espagne"));
-        p4.ajout(f1);
-        p4.ajout(f2);
-        p4.ajout(new Orange(0.75, "Costa Rica"));
-        if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
-            System.out.println("Test Panier.equals(Object) : OK");
-        } else {
+        Banane banane = new Banane();
+        Banane bananeParams = new Banane(158, "Danemark");
+        Banane bananeNegatif = new Banane(-3, "Allemagne");
+
+        System.out.println("Banane avec le const vide: " + banane);
+        System.out.println("Banane avec les param initialisé: " + bananeParams);
+        // test de Panier.equals(Object)
+        Panier p1 = new Panier(3); // exemple de panier (ananas, orange, <vide>)
+        Panier p2 = new Panier(3); // panier identique au premier
+        Panier p3 = new Panier(3); // panier différent du premier (mais premier fruit identique)
+        Panier p4 = new Panier(3); // panier différent du premier (mais seul les deux premiers fruits sont
+                                   // identiques)
+        Fruit f1 = (Fruit) new Ananas(3.56, "");
+        Fruit f2 = (Fruit) new Orange(0.5, "France");
+        try {
+            p1.ajout(f1);
+            p1.ajout(f2);
+            p2.ajout(f1);
+            p2.ajout(f2);
+            p3.ajout(f1);
+            p3.ajout(new Orange(0.5, "Espagne"));
+            p4.ajout(f1);
+            p4.ajout(f2);
+            p4.ajout(new Orange(0.75, "Costa Rica"));
+            if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
+                System.out.println("Test Panier.equals(Object) : OK");
+            } else {
+                System.out.println("Test Panier.equals(Object) : NOK");
+            }
+        } catch (PanierPleinException e) {
             System.out.println("Test Panier.equals(Object) : NOK");
         }
-    } catch (PanierPleinException e) {
-        System.out.println("Test Panier.equals(Object) : NOK");
+
+        System.out.println("premier test Panier");
+        Panier P = new Panier(10);
+        System.out.println(P.toString());
+
+        System.out.println("Test ajout panier");
+        try {
+            for (int i = 0; i < 10; i++)
+                P.ajout(new Orange());
+            System.out.println("Ajout bien réalisé\n");
+        } catch (PanierPleinException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Test ajout panier");
+        try {
+            for (int i = 0; i < 10; i++)
+                P.ajout(new Orange());
+            System.out.println("Ajout bien réalisé\n");
+        } catch (PanierPleinException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Banane avec le prix negatif: " + bananeNegatif);
+
     }
-
-
-	System.out.println("premier test Panier");
-	Panier P = new Panier(10);
-	System.out.println(P.toString());
-	
-	System.out.println("Test ajout panier");
-	try {
-		for(int i=0; i<10; i++) P.ajout(new Orange());
-		System.out.println("Ajout bien réalisé\n");
-	} catch(PanierPleinException e) { e.printStackTrace();}
-			
-	
-
-    }
-  }
 }

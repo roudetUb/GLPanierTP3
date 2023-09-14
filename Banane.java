@@ -1,6 +1,8 @@
 /**
  *
- * @author cristan
+
+ * @author roudet
+
  */
 public class Banane implements Fruit {
     private double prix;
@@ -59,18 +61,16 @@ public class Banane implements Fruit {
 
     /*
      * public static void main(String[] args) {
-     * Banane or1 = new Banane();
-     * Banane or2 = new Banane(12, "Conakry");
-     * // Ecrire ici vos tests
-     * System.out.println("verification Banane par default");
-     * System.out.println("le prix de départ est" + or1.getPrix());
-     * System.out.println("Vrai origine" + or1.getOrigine());
-     * or1.setOrigine("Congo");
-     * System.out.println("changement de l'origine " + or1.getOrigine());
      * 
-     * System.out.println("verification Banane avec parametre");
-     * System.out.println(or2.getPrix());
-     * System.out.println(or2.getOrigine());
+     * Banane banane = new Banane();
+     * Banane bananeParams = new Banane(158, "Danemark");
+     * Banane bananeNegatif = new Banane(-3, "Allemagne");
+     * 
+     * System.out.println("Banane avec le const vide: " + banane);
+     * System.out.println("Banane avec les param initialisé: " + bananeParams);
+     * System.out.println("Banane avec le prix negatif: " + bananeNegatif);
      * }
      */
 }
+
+ 
