@@ -42,6 +42,16 @@ public class Panier {
         return this.contenanceMax;
     }
 
+    // groupe 4
+    public void ajout(Fruit o) throws PanierPleinException { // ajoute le fruit o a la fin du panier si celui-ci n'est
+                                                             // pas plein
+        if (fruits.size() < contenanceMax)
+            fruits.add(o);
+        else
+            throw new PanierPleinException();
+
+    }
+
     // groupe 3
     public Fruit getFruit(int i) { // accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou
                                    // null s'il n'y a rien a cet emplacement
@@ -90,7 +100,7 @@ public class Panier {
         return false;
     }
 
-// tests
+    // tests
 public static void main(String[] args) {
         // Ecrire ici vos tests
         System.out.println("premier test Panier");
@@ -98,5 +108,74 @@ public static void main(String[] args) {
         System.out.println(P.toString());
 
         
+
+    
+    //groupe 7
+    public void boycotteOrigine(String origine) { // supprime du panier tous les fruits provenant du pays origine
+
     }
+
+    // groupe 8
+    @Override
+    public boolean equals(Object o) { /// predicat pour tester si 2 paniers sont equivalents : s'ils contiennent
+                                      /// exactement les memes fruits
+        if (o != null && o instanceof Panier) {
+            Panier or = (Panier) o;
+            if (getTaillePanier() == or.getTaillePanier()) {
+                for (int i = 0; i < getTaillePanier(); i++) {
+                    if (!getFruit(i).equals(or.getFruit(i))) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // tests
+    public static void main (String[] args){
+    	//Ecrire ici vos tests
+
+    // test de Panier.equals(Object)
+    Panier p1 = new Panier(3); // exemple de panier (ananas, orange, <vide>)
+    Panier p2 = new Panier(3); // panier identique au premier
+    Panier p3 = new Panier(3); // panier différent du premier (mais premier fruit identique)
+    Panier p4 = new Panier(3); // panier différent du premier (mais seul les deux premiers fruits sont identiques)
+    Fruit f1 = (Fruit) new Ananas(3.56, "");
+    Fruit f2 = (Fruit) new Orange(0.5, "France");
+    try {
+        p1.ajout(f1);
+        p1.ajout(f2);
+        p2.ajout(f1);
+        p2.ajout(f2);
+        p3.ajout(f1);
+        p3.ajout(new Orange(0.5, "Espagne"));
+        p4.ajout(f1);
+        p4.ajout(f2);
+        p4.ajout(new Orange(0.75, "Costa Rica"));
+        if (p1.equals(p2) && !p1.equals(p3) && !p1.equals(p4) && !p3.equals(p4)) {
+            System.out.println("Test Panier.equals(Object) : OK");
+        } else {
+            System.out.println("Test Panier.equals(Object) : NOK");
+        }
+    } catch (PanierPleinException e) {
+        System.out.println("Test Panier.equals(Object) : NOK");
+    }
+
+
+	System.out.println("premier test Panier");
+	Panier P = new Panier(10);
+	System.out.println(P.toString());
+	
+	System.out.println("Test ajout panier");
+	try {
+		for(int i=0; i<10; i++) P.ajout(new Orange());
+		System.out.println("Ajout bien réalisé\n");
+	} catch(PanierPleinException e) { e.printStackTrace();}
+			
+	
+
+    }
+  }
 }
