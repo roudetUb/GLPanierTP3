@@ -59,7 +59,10 @@ public class Panier {
 
     //groupe 4
     public void ajout(Fruit o) throws PanierPleinException{  //ajoute le fruit o a la fin du panier si celui-ci n'est pas plein
-       
+       if(fruits.size() < contenanceMax)
+       	fruits.add(o);
+       else
+       	throw new PanierPleinException();
     }
 
     //groupe 5
@@ -89,5 +92,13 @@ public class Panier {
 	System.out.println("premier test Panier");
 	Panier P = new Panier(10);
 	System.out.println(P.toString());
+	
+	System.out.println("Test ajout panier");
+	try {
+		for(int i=0; i<10; i++) P.ajout(new Orange());
+		System.out.println("Ajout bien réalisé\n");
+	} catch(PanierPleinException e) { e.printStackTrace();}
+			
+	
     }
 }
