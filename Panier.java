@@ -179,7 +179,7 @@ public class Panier {
         
         // Test fraise 
         Fraise fraise = new Fraise();
-        System.out.println("Fruit = Fraise -> Prix:" + fraise.getPrix();
-        System.out.println("Fruit = Fraise -> Origine:" + fraise.getOrigine();
+        System.out.println("Fruit = Fraise -> Prix:" + fraise.getPrix());
+        System.out.println("Fruit = Fraise -> Origine:" + fraise.getOrigine());
     }
 }
