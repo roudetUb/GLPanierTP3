@@ -89,7 +89,7 @@ public class Panier {
 
     // groupe 5
     public void retrait() throws PanierVideException { // retire le dernier fruit du panier si celui-ci n'est pas vide
-
+        fruits.remove(fruits.get(this.contenanceMax-1));
     }
 
     // groupe 6
