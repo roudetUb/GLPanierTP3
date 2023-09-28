@@ -23,8 +23,9 @@ public class Panier {
     // groupe 1
     public Panier(int contenanceMax) { // initialise un panier vide ayant une certaine contenance maximale (precisee en
                                        // parametre)
-        this.fruits = new ArrayList<Fruit>();
         this.contenanceMax = contenanceMax;
+        this.fruits = new ArrayList<Fruit>(contenanceMax);
+        
     }
 
     @Override
@@ -60,7 +61,7 @@ public class Panier {
     // groupe 3
     public Fruit getFruit(int i) { // accesseur retournant le fruit contenu dans le panier a l'emplacement n°i ou
                                    // null s'il n'y a rien a cet emplacement
-        return null;
+        return fruits.get(i);
     }
 
     // groupe 4
