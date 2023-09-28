@@ -86,8 +86,14 @@ public class Panier {
     }
 
     // groupe 7
-    public void boycotteOrigine(String origine) { // supprime du panier tous les fruits provenant du pays origine
-
+    public void boycotteOrigine(String origine) {  //supprime du panier tous les fruits provenant du pays origine
+    	for(int i = fruits.size()-1; i>= 0; --i) 
+    	{
+    		if(fruits.get(i).getOrigine().equals(origine))
+    		{
+                fruits.remove(i);
+        	}
+        }
     }
 
     // groupe 8
@@ -170,6 +176,10 @@ public class Panier {
             e.printStackTrace();
         }
         System.out.println("Banane avec le prix negatif: " + bananeNegatif);
-
+        
+        // Test fraise 
+        Fraise fraise = new Fraise();
+        System.out.println("Fruit = Fraise -> Prix:" + fraise.getPrix();
+        System.out.println("Fruit = Fraise -> Origine:" + fraise.getOrigine();
     }
 }
